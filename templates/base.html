@@ -1,0 +1,43 @@
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} CINFO - BLOG {% endblock %}</title>
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="princ">
+        <div class="topBar">
+            {% if user.is_authenticated %}
+
+            <div class="userItem">
+                <p>User: {{ user.get_username }}</p>
+            </div>
+
+            <div class="optionsItem">
+                <div>
+                    <li class="logOutIt"><a href="{% url 'logout'%}">Logout</a></li>
+                    <li class="homeIt"><a href="/blog/">Home</a></li>
+                    <li class="createIt"><a href="/blog/create/">New Post</a></li>
+                </div>
+            </div>
+            {% endif %} 
+        </div>
+
+        <div class="center">
+            <header>
+                <h1> CINFO - BLOG</h1>
+            </header>
+            <main>
+                {% block content %}
+
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+</body>
+</html>
